@@ -22,6 +22,8 @@ $(document).ready(function(){
     setDatepicker();
     getData();
     setupValidation();
+    getDrop();
+    getDrop1();
 
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
@@ -29,6 +31,47 @@ $(document).ready(function(){
       });
 });
 
+function getDrop(){
+    $.post('../.../titles/module_titles/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.name
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#title').select2({
+            placeholder: 'Seleccione un maestro',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
+
+function getDrop1(){
+    $.post('../.../stores/module_stores/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.name
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#store').select2({
+            placeholder: 'Seleccione un maestro',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
 
 function getData() {
     $.post('main.php',{method:'get'},function(data){

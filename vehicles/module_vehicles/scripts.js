@@ -20,6 +20,7 @@ $.extend($.validator.messages,{
 var na = document.getElementById('name');
 $(document).ready(function(){
     
+    getDrop();
     getData();
     setupValidation()
 
@@ -29,6 +30,26 @@ $(document).ready(function(){
       });
 });
 
+function getDrop(){
+    $.post('../.../car_brands/module_cbrands/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.name
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#car_brand_id').select2({
+            placeholder: 'Seleccione un maestro',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
 
 function getData() {
     $.post('main.php',{method:'get'},function(data){
