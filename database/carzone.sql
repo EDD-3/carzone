@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 04, 2019 at 03:54 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.8
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 10-10-2019 a las 03:21:57
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `carzone`
+-- Base de datos: `carzone`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `car_brands`
+-- Estructura de tabla para la tabla `car_brands`
 --
 
 CREATE TABLE `car_brands` (
@@ -34,7 +34,7 @@ CREATE TABLE `car_brands` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `car_brands`
+-- Volcado de datos para la tabla `car_brands`
 --
 
 INSERT INTO `car_brands` (`id`, `name`) VALUES
@@ -43,7 +43,7 @@ INSERT INTO `car_brands` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_brands`
+-- Estructura de tabla para la tabla `product_brands`
 --
 
 CREATE TABLE `product_brands` (
@@ -51,36 +51,62 @@ CREATE TABLE `product_brands` (
   `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Indexes for dumped tables
+-- Estructura de tabla para la tabla `vehicles`
+--
+
+CREATE TABLE `vehicles` (
+  `id` int(11) NOT NULL,
+  `model` varchar(30) NOT NULL,
+  `engine` varchar(30) NOT NULL,
+  `year` date NOT NULL,
+  `car_brand_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `car_brands`
+-- Indices de la tabla `car_brands`
 --
 ALTER TABLE `car_brands`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `product_brands`
+-- Indices de la tabla `product_brands`
 --
 ALTER TABLE `product_brands`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indices de la tabla `vehicles`
+--
+ALTER TABLE `vehicles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `car_brands`
+-- AUTO_INCREMENT de la tabla `car_brands`
 --
 ALTER TABLE `car_brands`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `product_brands`
+-- AUTO_INCREMENT de la tabla `product_brands`
 --
 ALTER TABLE `product_brands`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `vehicles`
+--
+ALTER TABLE `vehicles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
