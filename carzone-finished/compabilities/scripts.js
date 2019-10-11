@@ -23,8 +23,8 @@ $(document).ready(function(){
     getData();
     setupValidation()
     getDropCar();
-    getDropECar();
     getDropProd();
+    getDropECar();
     getDropEProd();
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
@@ -33,7 +33,7 @@ $(document).ready(function(){
 });
 
 function getDropCar(){
-    $.post('../.../vehicles/module_vehicles/main.php',{method:'get'},function(e){
+    $.post('../vehicles/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -54,7 +54,7 @@ function getDropCar(){
 }
 
 function getDropProd(){
-    $.post('../.../products/module_products/main.php',{method:'get'},function(e){
+    $.post('../products/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -75,7 +75,7 @@ function getDropProd(){
 }
 
 function getDropECar(){
-    $.post('../.../vehicles/module_vehicles/main.php',{method:'get'},function(e){
+    $.post('../vehicles/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -96,7 +96,7 @@ function getDropECar(){
 }
 
 function getDropEProd(){
-    $.post('../.../products/module_products/main.php',{method:'get'},function(e){
+    $.post('../products/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -214,8 +214,11 @@ function setDataTable(data){
 function setupValidation(){
     $('#frm').validate({
         rules:{
-            name:{
+            car_id:{
                 required:true
+            },
+            product_id: {
+                required: true
             }
         },
         submitHandler: function(form){
@@ -236,7 +239,10 @@ function setupValidation(){
 function setupModalValidation(){
     $('#Efrm').validate({
         rules:{
-            Ename:{
+            Ecar_id:{
+                required:true
+            },
+            Eproduct_id:{
                 required:true
             }
 

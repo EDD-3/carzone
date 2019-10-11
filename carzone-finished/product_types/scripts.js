@@ -20,36 +20,15 @@ $.extend($.validator.messages,{
 var na = document.getElementById('name');
 $(document).ready(function(){
     
-    getDrop();
     getData();
-    setupValidation()
+    setupValidation();
+    setupModalValidation();
 
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
       });
 });
-
-function getDrop(){
-    $.post('../.../product_types/module_ptypes/main.php',{method:'get'},function(e){
-        var datosDrop = [];
-        values = e;
-        $.each(e,function(index,value){
-            var obj = {
-                id:value.id,
-                text:value.name
-            };
-            datosDrop.push(obj);
-        });
-
-        $('#car_brand_id').select2({
-            placeholder: 'Seleccione un maestro',
-            data:datosDrop,
-            theme: "bootstrap4",
-            width: 'element'
-        });
-    });
-}
 
 function getData() {
     $.post('main.php',{method:'get'},function(data){
@@ -79,7 +58,7 @@ function deleteData(id){
 function editRow(id){
     editId = id;
     $.post('main.php',{method:'show',data:{id:id}},function(e){
-        $('#Ename').val(e[0].name);
+        $('#Etype').val(e[0].type);
         $('#editModal').modal();
         setupModalValidation();
     });
@@ -89,7 +68,7 @@ function editRow(id){
 function updateData() {
     var newRow = {
         'id':editId,
-        'name':$('#Ename').val()
+        'type':$('#Etype').val()
     }
     
     $.post('main.php',{method:'update',data:newRow},function(e){
@@ -110,8 +89,8 @@ function updateData() {
 var data = [];
 
 var columns = [{
-    title: 'Nombre de la marca del producto',
-    data: 'name'
+    title: 'Tipo de producto',
+    data: 'type'
 },
 {
     title: 'Acciones',
@@ -142,7 +121,7 @@ function setDataTable(data){
 function setupValidation(){
     $('#frm').validate({
         rules:{
-            name:{
+            type:{
                 required:true
             }
         },
@@ -164,7 +143,7 @@ function setupValidation(){
 function setupModalValidation(){
     $('#Efrm').validate({
         rules:{
-            Ename:{
+            Etype:{
                 required:true
             }
 

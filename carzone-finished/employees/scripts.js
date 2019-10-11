@@ -22,8 +22,11 @@ $(document).ready(function(){
     setDatepicker();
     getData();
     setupValidation();
+    setupModalValidation();
     getDrop();
     getDrop1();
+    getModalDrop();
+    getModalDrop1();
 
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
@@ -32,19 +35,19 @@ $(document).ready(function(){
 });
 
 function getDrop(){
-    $.post('../.../titles/module_titles/main.php',{method:'get'},function(e){
+    $.post('../employee_types/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
             var obj = {
                 id:value.id,
-                text:value.name
+                text:value.title
             };
             datosDrop.push(obj);
         });
 
         $('#title').select2({
-            placeholder: 'Seleccione un maestro',
+            placeholder: 'Seleccione un puesto',
             data:datosDrop,
             theme: "bootstrap4",
             width: 'element'
@@ -53,7 +56,7 @@ function getDrop(){
 }
 
 function getDrop1(){
-    $.post('../.../stores/module_stores/main.php',{method:'get'},function(e){
+    $.post('../stores/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -65,7 +68,49 @@ function getDrop1(){
         });
 
         $('#store').select2({
-            placeholder: 'Seleccione un maestro',
+            placeholder: 'Seleccione una tienda',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
+
+function getModalDrop(){
+    $.post('../employee_types/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.title
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#Etitle').select2({
+            placeholder: 'Seleccione un puesto',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
+
+function getModalDrop1(){
+    $.post('../stores/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.name
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#Estore').select2({
+            placeholder: 'Seleccione una tienda',
             data:datosDrop,
             theme: "bootstrap4",
             width: 'element'

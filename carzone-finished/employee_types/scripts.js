@@ -58,7 +58,7 @@ function deleteData(id){
 function editRow(id){
     editId = id;
     $.post('main.php',{method:'show',data:{id:id}},function(e){
-        $('#Etitle').val(e[0].name);
+        $('#Etitle').val(e[0].title);
         $('#editModal').modal();
         setupModalValidation();
     });

@@ -5,7 +5,7 @@ require_once('../config/database.php');
 /*
     Clase que hereda la conexion a base de datos
 */
-class Employee extends Connection
+class Employee_types extends Connection
 {
 
     /*

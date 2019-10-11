@@ -1,10 +1,10 @@
 <?php
 
-require_once('../classes/Type.php');
+require_once('../classes/Product_types.php');
 if (isset($_POST['method']))
 {
     header('Content-Type: application/json');
-    $obj = new Type();
+    $obj = new Product_types();
     switch($_POST['method'])
     {
         case 'get':
