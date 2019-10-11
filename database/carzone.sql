@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2019 at 04:11 AM
+-- Generation Time: Oct 11, 2019 at 05:03 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.8
 
@@ -38,7 +38,7 @@ CREATE TABLE `car_brands` (
 --
 
 INSERT INTO `car_brands` (`id`, `name`) VALUES
-(1, 'Ford');
+(1, 'Nissan');
 
 -- --------------------------------------------------------
 
@@ -102,6 +102,17 @@ CREATE TABLE `products` (
 CREATE TABLE `product_brands` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_types`
+--
+
+CREATE TABLE `product_types` (
+  `id` int(11) NOT NULL,
+  `type` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -188,6 +199,12 @@ ALTER TABLE `product_brands`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `product_types`
+--
+ALTER TABLE `product_types`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `stocks`
 --
 ALTER TABLE `stocks`
@@ -243,6 +260,12 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_brands`
 --
 ALTER TABLE `product_brands`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_types`
+--
+ALTER TABLE `product_types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
