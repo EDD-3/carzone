@@ -38,7 +38,10 @@ function getData() {
 
 function addData(){
     var newRow = {
-        'name':$('#name').val()
+        'model':$('#model').val(),
+        'engine':$('#engine').val(),
+        'year':$('#year').val(),
+        'car_brand_id':$('#car_brand_id').val()
     }
     console.log(newRow);
 

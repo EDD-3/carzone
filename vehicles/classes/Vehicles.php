@@ -22,8 +22,8 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("INSERT INTO vehicles (name)
-            VALUES (:name)");
+            $statement = $cnx->prepare("INSERT INTO vehicles (model, engine, year, car_brand_id)
+            VALUES (:model, :engine, :year, :car_brand_id)");
             $statement->execute($data);
         }
     
@@ -103,7 +103,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("UPDATE vehicles SET name=:name WHERE id=:id");
+            $statement = $cnx->prepare("UPDATE vehicles SET model=:model, engine=:engine, year=:year, car_brand_id=:car_brand_id  WHERE id=:id");
             $statement->execute($data);
         }
         catch(PDOException $e)
