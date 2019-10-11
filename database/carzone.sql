@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2019 at 03:36 AM
+-- Generation Time: Oct 11, 2019 at 04:11 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.8
 
@@ -43,6 +43,18 @@ INSERT INTO `car_brands` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `compabilities`
+--
+
+CREATE TABLE `compabilities` (
+  `id` int(11) NOT NULL,
+  `car_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `employees`
 --
 
@@ -60,12 +72,65 @@ CREATE TABLE `employees` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `employee_types`
+--
+
+CREATE TABLE `employee_types` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `brand_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product_brands`
 --
 
 CREATE TABLE `product_brands` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stocks`
+--
+
+CREATE TABLE `stocks` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(8,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stores`
+--
+
+CREATE TABLE `stores` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `start_zip` varchar(12) NOT NULL,
+  `end_zip` varchar(12) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `telephone` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -93,15 +158,45 @@ ALTER TABLE `car_brands`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `compabilities`
+--
+ALTER TABLE `compabilities`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `employee_types`
+--
+ALTER TABLE `employee_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `product_brands`
 --
 ALTER TABLE `product_brands`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `stocks`
+--
+ALTER TABLE `stocks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `stores`
+--
+ALTER TABLE `stores`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -121,15 +216,45 @@ ALTER TABLE `car_brands`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `compabilities`
+--
+ALTER TABLE `compabilities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `employee_types`
+--
+ALTER TABLE `employee_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `product_brands`
 --
 ALTER TABLE `product_brands`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `stocks`
+--
+ALTER TABLE `stocks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `stores`
+--
+ALTER TABLE `stores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
