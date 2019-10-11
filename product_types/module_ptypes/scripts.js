@@ -31,7 +31,7 @@ $(document).ready(function(){
 });
 
 function getDrop(){
-    $.post('../.../vehicles/module_vehicles/main.php',{method:'get'},function(e){
+    $.post('../.../product_types/module_ptypes/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -59,10 +59,7 @@ function getData() {
 
 function addData(){
     var newRow = {
-        'model':$('#model').val(),
-        'engine':$('#engine').val(),
-        'year':$('#year').val(),
-        'car_brand_id':$('#car_brand_id').val()
+        'type':$('#type').val(),
     }
     console.log(newRow);
 
@@ -82,10 +79,7 @@ function deleteData(id){
 function editRow(id){
     editId = id;
     $.post('main.php',{method:'show',data:{id:id}},function(e){
-        $('#Emodel').val(e[0].name),
-        $('#Eengine').val(e[0].name),
-        $('#Eyear').val(e[0].name),
-        $('#Ecar_brand_id').val(e[0].name);
+        $('#Ename').val(e[0].name);
         $('#editModal').modal();
         setupModalValidation();
     });
@@ -95,10 +89,7 @@ function editRow(id){
 function updateData() {
     var newRow = {
         'id':editId,
-        'model':$('#Emodel').val(),
-        'engine':$('#Eengine').val(),
-        'year':$('#Eyear').val(),
-        'car_brand_id':$('#Ecar_brand_id').val(),
+        'name':$('#Ename').val()
     }
     
     $.post('main.php',{method:'update',data:newRow},function(e){
