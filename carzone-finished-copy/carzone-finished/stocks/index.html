@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../DataTables/datatables.min.css" />
+    <link rel="stylesheet" href="../css/select2.css">
+    <link rel="stylesheet" href="../css/select2-bootstrap4.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/datepicker.min.css">
+    <script type="text/javascript" async src="https://kit.fontawesome.com/5cb5eafcff.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div class="sidebar-heading">¡Bienvenido!</div>
+            <div class="list-group list-group-flush">
+                <a href="../users/index.html" class="list-group-item list-group-item-action ">Vehiculos <i
+                        class="fas fa-user-cog"></i></a>
+                <a href="../MenuMariscos/index.html"
+                    class="list-group-item list-group-item-action active-link ">Empleados <i
+                        class="fas fa-utensils"></i></a>
+                <a href="../sales/index.html" class="list-group-item list-group-item-action">Marcas de productos <i
+                        class="fas fa-piggy-bank"></i> </a>
+                <a href="../users/index.html" class="list-group-item list-group-item-action ">Marcas de vehiculos <i
+                        class="fas fa-user-cog"></i></a>
+                <a href="../MenuMariscos/index.html" class="list-group-item list-group-item-action active-link ">Puestos
+                    de trabajo <i class="fas fa-utensils"></i></a>
+                <a href="../sales/index.html" class="list-group-item list-group-item-action">Tiendas <i
+                        class="fas fa-piggy-bank"></i> </a>
+                <a href="../users/index.html" class="list-group-item list-group-item-action ">Inventarios <i
+                        class="fas fa-user-cog"></i></a>
+                <a href="../MenuMariscos/index.html"
+                    class="list-group-item list-group-item-action active-link ">Productos <i
+                        class="fas fa-utensils"></i></a>
+                <a href="../sales/index.html" class="list-group-item list-group-item-action">Compatibilidad <i
+                        class="fas fa-piggy-bank"></i> </a>
+                <a href="../users/index.html" class="list-group-item list-group-item-action ">Tipo de productos <i
+                        class="fas fa-user-cog"></i></a>
+
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-color border-bottom">
+                <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-align-left"></i></button>
+                <a class="nav-link ml-auto" href="../login/index.html">Cerrar sesión <i
+                        class="fas fa-door-open"></i></a>
+            </nav>
+            <div class="container-fluid">
+                <form id="frm">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="product">Producto</label>
+                                <select name="product" id="product"> <option value=""></option></select>
+                        </div>
+                        <div class="col-6">
+                            <label for="store">Tienda</label>
+                            <select name="store" id="store"><option value=""></option></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="number">Cantidad</label>
+                            <input type="number" name="quantity" id="quantity" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="price">Precio</label>
+                            <input type="number" name="price" id="price" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn btn-primary rounded-pill mt-2 mb-1">Ingresar</button>
+                    </div>
+                </form>
+                <h1>Inventario</h1>
+                <div class="row mb-2">
+                    <div class="col">
+                        <table id="tbl" class="table table-striped table-dark table-hover table-sm table-responsive-md"
+                            style="width: 100%">
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar inventario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="Efrm">
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="Eproduct">Producto</label>
+                                <select name="Eproduct" id="Eproduct"> <option value=""></option></select>
+                                <div class="col">
+                                    <label for="Estore">Apellido</label>
+                                    <select name="Estore" id="Estore"> <option value=""></option></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="Equantity">Cantidad</label>
+                                <input type="number" name="Equantity" id="Equantity" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="Eprice">Telefono</label>
+                                <input type="number" name="Eprice" id="Eprice" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap-notify.min.js"></script>
+    <script src="../js/select2.full.js"></script>
+    <script type="text/javascript" src="../DataTables/datatables.min.js"></script>
+    <script src="../js/datepicker.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+
+</html>

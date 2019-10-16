@@ -31,7 +31,7 @@ $(document).ready(function(){
 });
 
 function getDrop(){
-    $.post('../.../car_brands/module_cbrands/main.php',{method:'get'},function(e){
+    $.post('../carbrand/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -42,8 +42,8 @@ function getDrop(){
             datosDrop.push(obj);
         });
 
-        $('#model').select2({
-            placeholder: 'Seleccione un maestro',
+        $('#car_brand_id').select2({
+            placeholder: 'Seleccione una Marca',
             data:datosDrop,
             theme: "bootstrap4",
             width: 'element'
@@ -121,18 +121,6 @@ var data = [];
 var columns = [{
     title: 'Modelo',
     data: 'model'
-},
-{
-    title: 'Brand',
-    data: 'name'
-},
-{
-    title: 'Año',
-    data: 'year'
-},
-{
-    title: 'Motor',
-    data: 'engine'
 },
 {
     title: 'Acciones',

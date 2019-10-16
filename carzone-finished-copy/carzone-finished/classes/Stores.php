@@ -22,8 +22,8 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("INSERT INTO vehicles (model, engine, year, car_brand_id)
-            VALUES (:model, :engine, :year, :car_brand_id)");
+            $statement = $cnx->prepare("INSERT INTO stores (name:name, start_zip:start_zip, end_zip:end_zip, 
+            address:address, telephone:telephone)");
             $statement->execute($data);
         }
     
@@ -47,7 +47,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT v.model, cb.name, v.year, v.model FROM vehicles v JOIN car_brands cb ON v.car_brand_id = cb.id");
+            $statement = $cnx->prepare("SELECT * FROM stores");
             $statement->execute();
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))
@@ -75,7 +75,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT * FROM vehicles WHERE id = :id");
+            $statement = $cnx->prepare("SELECT * FROM stores WHERE id = :id");
             $statement->execute($data);
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))
@@ -103,7 +103,8 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("UPDATE vehicles SET model=:model, engine=:engine, year=:year, car_brand_id=:car_brand_id  WHERE id=:id");
+            $statement = $cnx->prepare("UPDATE stores SET name:name, start_zip:start_zip, end_zip:end_zip, 
+            address:address, telephone:telephone WHERE id=:id");
             $statement->execute($data);
         }
         catch(PDOException $e)
@@ -126,7 +127,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("DELETE FROM vehicles WHERE id=:id");
+            $statement = $cnx->prepare("DELETE FROM stores WHERE id=:id");
             $statement->execute($data);
         }
         catch(PDOException $e)

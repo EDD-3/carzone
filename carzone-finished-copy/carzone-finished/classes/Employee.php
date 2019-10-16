@@ -5,7 +5,7 @@ require_once('../config/database.php');
 /*
     Clase que hereda la conexion a base de datos
 */
-class Vehicles extends Connection
+class Employee extends Connection
 {
 
     /*
@@ -22,8 +22,8 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("INSERT INTO vehicles (model, engine, year, car_brand_id)
-            VALUES (:model, :engine, :year, :car_brand_id)");
+            $statement = $cnx->prepare("INSERT INTO employees (first_name, last_name, birthdate, telephone, email, title_id, store_id)
+            VALUES (:first_name, :last_name, :birthdate, :telephone, :email, :title_id, :store_id)");
             $statement->execute($data);
         }
     
@@ -47,7 +47,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT v.model, cb.name, v.year, v.model FROM vehicles v JOIN car_brands cb ON v.car_brand_id = cb.id");
+            $statement = $cnx->prepare("SELECT * FROM employees");
             $statement->execute();
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))
@@ -75,7 +75,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT * FROM vehicles WHERE id = :id");
+            $statement = $cnx->prepare("SELECT * FROM employees WHERE id = :id");
             $statement->execute($data);
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))
@@ -103,7 +103,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("UPDATE vehicles SET model=:model, engine=:engine, year=:year, car_brand_id=:car_brand_id  WHERE id=:id");
+            $statement = $cnx->prepare("UPDATE employees SET first_name=:first_name, last_name=:last_name, birthdate=:birthdate, telephone=:telephone, email=:email, title_id=:title_id, store_id=:store_id WHERE id=:id");
             $statement->execute($data);
         }
         catch(PDOException $e)
@@ -126,7 +126,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("DELETE FROM vehicles WHERE id=:id");
+            $statement = $cnx->prepare("DELETE FROM employees WHERE id=:id");
             $statement->execute($data);
         }
         catch(PDOException $e)

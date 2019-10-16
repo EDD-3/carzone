@@ -19,10 +19,11 @@ $.extend($.validator.messages,{
 
 var na = document.getElementById('name');
 $(document).ready(function(){
-    
-    getDrop();
+    setDatepicker();
     getData();
-    setupValidation()
+    setupValidation();
+    getDrop();
+    getDrop1();
 
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
@@ -31,7 +32,7 @@ $(document).ready(function(){
 });
 
 function getDrop(){
-    $.post('../.../car_brands/module_cbrands/main.php',{method:'get'},function(e){
+    $.post('../.../titles/module_titles/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -42,7 +43,28 @@ function getDrop(){
             datosDrop.push(obj);
         });
 
-        $('#model').select2({
+        $('#title').select2({
+            placeholder: 'Seleccione un maestro',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
+
+function getDrop1(){
+    $.post('../.../stores/module_stores/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.name
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#store').select2({
             placeholder: 'Seleccione un maestro',
             data:datosDrop,
             theme: "bootstrap4",
@@ -59,10 +81,14 @@ function getData() {
 
 function addData(){
     var newRow = {
-        'model':$('#model').val(),
-        'engine':$('#engine').val(),
-        'year':$('#year').val(),
-        'car_brand_id':$('#car_brand_id').val()
+        'first_name':$('#firstname').val(),
+        'last_name':$('#lastname').val(),
+        'telephone':$('#telephone').val(),
+        'birthdate' :$('#birthdate').val(),
+        'email':$('#email').val(),
+        'title_id' :$('#title').val(),
+        'store_id' :$('#store').val()
+
     }
     console.log(newRow);
 
@@ -82,10 +108,15 @@ function deleteData(id){
 function editRow(id){
     editId = id;
     $.post('main.php',{method:'show',data:{id:id}},function(e){
-        $('#Emodel').val(e[0].name),
-        $('#Eengine').val(e[0].name),
-        $('#Eyear').val(e[0].name),
-        $('#Ecar_brand_id').val(e[0].name);
+        console.log(e)
+        
+        $('#Efirstname').val(e[0].first_name);
+        $('#Elastname').val(e[0].last_name);
+        $('#Etelephone').val(e[0].telephone);
+        $('#Ebirthdate').val(e[0].birthdate);
+        $('#Eemail').val(e[0].email);
+        $('#Etitle').val(e[0].title_id);
+        $('#Estore').val(e[0].store_id)
         $('#editModal').modal();
         setupModalValidation();
     });
@@ -95,10 +126,13 @@ function editRow(id){
 function updateData() {
     var newRow = {
         'id':editId,
-        'model':$('#Emodel').val(),
-        'engine':$('#Eengine').val(),
-        'year':$('#Eyear').val(),
-        'car_brand_id':$('#Ecar_brand_id').val(),
+        'first_name':$('#Efirstname').val(),
+        'last_name':$('#Elastname').val(),
+        'telephone':$('#Etelephone').val(),
+        'birthdate' :$('#Ebirthdate').val(),
+        'email':$('#Eemail').val(),
+        'title_id' :$('#Etitle').val(),
+        'store_id' :$('#Estore').val()
     }
     
     $.post('main.php',{method:'update',data:newRow},function(e){
@@ -116,23 +150,50 @@ function updateData() {
     
 }
 
+
+function setDatepicker() {
+    $('#birthdate').datepicker({
+        format: 'yyyy-mm-dd',
+        language: 'es'
+    });
+    $('#Ebirthdate').datepicker({
+        format: 'yyyy-mm-dd',
+        language: 'es'
+    });
+}
+
 var data = [];
 
 var columns = [{
-    title: 'Modelo',
-    data: 'model'
+    title: 'Nombre del empleado',
+    data: 'first_name'
 },
 {
-    title: 'Brand',
-    data: 'name'
+    title: 'Apellido',
+    data: 'last_name'
+
 },
 {
-    title: 'Año',
-    data: 'year'
+    title: 'Email',
+    data: 'email'
+
 },
 {
-    title: 'Motor',
-    data: 'engine'
+    title: 'Telefono',
+    data: 'telephone'
+
+},
+{
+    title: 'Fecha de nacimiento',
+    data : 'birthdate'
+},
+{
+    title: 'Puesto',
+    data: 'title_id'
+},
+{
+    title: 'Tienda',
+    data: 'store_id'
 },
 {
     title: 'Acciones',
@@ -163,8 +224,26 @@ function setDataTable(data){
 function setupValidation(){
     $('#frm').validate({
         rules:{
-            name:{
+            firstname:{
                 required:true
+            },
+            lastname:{
+                required:true
+            },
+            email:{
+                required:true
+            },
+            telephone:{
+                required:true
+            },
+            birthdate: {
+                required: true
+            },
+            title: {
+                required: true
+            },
+            store: {
+                required: true
             }
         },
         submitHandler: function(form){
@@ -185,7 +264,25 @@ function setupValidation(){
 function setupModalValidation(){
     $('#Efrm').validate({
         rules:{
-            Ename:{
+            Efirstname:{
+                required:true
+            },
+            Elastname:{
+                required:true
+            },
+            Eemail:{
+                required:true
+            },
+            Etelephone:{
+                required:true
+            },
+            Ebirthdate:{
+                required:true
+            },
+            Etitle:{
+                required:true
+            },
+            Estore:{
                 required:true
             }
 

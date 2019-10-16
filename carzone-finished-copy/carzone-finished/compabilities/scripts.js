@@ -20,18 +20,41 @@ $.extend($.validator.messages,{
 var na = document.getElementById('name');
 $(document).ready(function(){
     
-    getDrop();
     getData();
     setupValidation()
-
+    getDropCar();
+    getDropECar();
+    getDropProd();
+    getDropEProd();
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
       });
 });
 
-function getDrop(){
-    $.post('../.../car_brands/module_cbrands/main.php',{method:'get'},function(e){
+function getDropCar(){
+    $.post('../.../vehicles/module_vehicles/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.model
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#car_id').select2({
+            placeholder: 'Seleccione una ID',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
+
+function getDropProd(){
+    $.post('../.../products/module_products/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -42,8 +65,50 @@ function getDrop(){
             datosDrop.push(obj);
         });
 
-        $('#model').select2({
-            placeholder: 'Seleccione un maestro',
+        $('#product_id').select2({
+            placeholder: 'Seleccione una ID',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
+
+function getDropECar(){
+    $.post('../.../vehicles/module_vehicles/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.model
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#Ear_id').select2({
+            placeholder: 'Seleccione una ID',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
+
+function getDropEProd(){
+    $.post('../.../products/module_products/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.name
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#Eproduct_id').select2({
+            placeholder: 'Seleccione una ID',
             data:datosDrop,
             theme: "bootstrap4",
             width: 'element'
@@ -59,10 +124,8 @@ function getData() {
 
 function addData(){
     var newRow = {
-        'model':$('#model').val(),
-        'engine':$('#engine').val(),
-        'year':$('#year').val(),
-        'car_brand_id':$('#car_brand_id').val()
+        'car_id':$('#car_id').val(),
+        'product_id':$('#product_id').val()
     }
     console.log(newRow);
 
@@ -82,10 +145,8 @@ function deleteData(id){
 function editRow(id){
     editId = id;
     $.post('main.php',{method:'show',data:{id:id}},function(e){
-        $('#Emodel').val(e[0].name),
-        $('#Eengine').val(e[0].name),
-        $('#Eyear').val(e[0].name),
-        $('#Ecar_brand_id').val(e[0].name);
+        $('#Ecar_id').val(e[0].car_id);
+        $('#Eproduct_id').val(e[0].product_id);
         $('#editModal').modal();
         setupModalValidation();
     });
@@ -95,10 +156,8 @@ function editRow(id){
 function updateData() {
     var newRow = {
         'id':editId,
-        'model':$('#Emodel').val(),
-        'engine':$('#Eengine').val(),
-        'year':$('#Eyear').val(),
-        'car_brand_id':$('#Ecar_brand_id').val(),
+        'car_id':$('#Ecar_id').val(),
+        'product_id':$('#Eproduct_id').val()
     }
     
     $.post('main.php',{method:'update',data:newRow},function(e){
@@ -119,20 +178,12 @@ function updateData() {
 var data = [];
 
 var columns = [{
-    title: 'Modelo',
-    data: 'model'
+    title: 'ID de Carro',
+    data: 'car_id'
 },
 {
-    title: 'Brand',
-    data: 'name'
-},
-{
-    title: 'Año',
-    data: 'year'
-},
-{
-    title: 'Motor',
-    data: 'engine'
+    title: 'ID de Producto',
+    data: 'product_id'
 },
 {
     title: 'Acciones',

@@ -5,7 +5,7 @@ require_once('../config/database.php');
 /*
     Clase que hereda la conexion a base de datos
 */
-class Vehicles extends Connection
+class Employee extends Connection
 {
 
     /*
@@ -22,8 +22,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("INSERT INTO vehicles (model, engine, year, car_brand_id)
-            VALUES (:model, :engine, :year, :car_brand_id)");
+            $statement = $cnx->prepare("INSERT INTO employee_types (title:title)");
             $statement->execute($data);
         }
     
@@ -47,7 +46,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT v.model, cb.name, v.year, v.model FROM vehicles v JOIN car_brands cb ON v.car_brand_id = cb.id");
+            $statement = $cnx->prepare("SELECT * FROM employee_types");
             $statement->execute();
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))
@@ -75,7 +74,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT * FROM vehicles WHERE id = :id");
+            $statement = $cnx->prepare("SELECT * FROM employee_types WHERE id = :id");
             $statement->execute($data);
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))
@@ -103,7 +102,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("UPDATE vehicles SET model=:model, engine=:engine, year=:year, car_brand_id=:car_brand_id  WHERE id=:id");
+            $statement = $cnx->prepare("UPDATE employee_types SET title=:title WHERE id = :id");
             $statement->execute($data);
         }
         catch(PDOException $e)
@@ -126,7 +125,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("DELETE FROM vehicles WHERE id=:id");
+            $statement = $cnx->prepare("DELETE FROM employee_types WHERE id = :id");
             $statement->execute($data);
         }
         catch(PDOException $e)
