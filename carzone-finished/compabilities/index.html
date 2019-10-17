@@ -33,26 +33,25 @@
             <div class="list-group list-group-flush">
                 <a href="../vehicles/index.html" class="list-group-item list-group-item-action ">Vehiculos <i
                         class="fas fa-user-cog"></i></a>
-                <a href="../employees/index.html"
-                    class="list-group-item list-group-item-action active-link ">Empleados <i
-                        class="fas fa-utensils"></i></a>
-                <a href="../productbrands/index.html" class="list-group-item list-group-item-action">Marcas de productos <i
-                        class="fas fa-piggy-bank"></i> </a>
+                <a href="../employees/index.html" class="list-group-item list-group-item-action active-link ">Empleados
+                    <i class="fas fa-utensils"></i></a>
+                <a href="../productbrands/index.html" class="list-group-item list-group-item-action">Marcas de productos
+                    <i class="fas fa-piggy-bank"></i> </a>
                 <a href="../carbrands/index.html" class="list-group-item list-group-item-action ">Marcas de vehiculos <i
                         class="fas fa-user-cog"></i></a>
-                <a href="../employee_types/index.html" class="list-group-item list-group-item-action active-link ">Puestos
+                <a href="../employee_types/index.html"
+                    class="list-group-item list-group-item-action active-link ">Puestos
                     de trabajo <i class="fas fa-utensils"></i></a>
                 <a href="../stores/index.html" class="list-group-item list-group-item-action">Tiendas <i
                         class="fas fa-piggy-bank"></i> </a>
                 <a href="../stocks/index.html" class="list-group-item list-group-item-action ">Inventarios <i
                         class="fas fa-user-cog"></i></a>
-                <a href="../products/index.html"
-                    class="list-group-item list-group-item-action active-link ">Productos <i
-                        class="fas fa-utensils"></i></a>
+                <a href="../products/index.html" class="list-group-item list-group-item-action active-link ">Productos
+                    <i class="fas fa-utensils"></i></a>
                 <a href="../compabilities/index.html" class="list-group-item list-group-item-action">Compatibilidad <i
                         class="fas fa-piggy-bank"></i> </a>
-                <a href="../product_types/index.html" class="list-group-item list-group-item-action ">Tipo de productos <i
-                        class="fas fa-user-cog"></i></a>
+                <a href="../product_types/index.html" class="list-group-item list-group-item-action ">Tipo de productos
+                    <i class="fas fa-user-cog"></i></a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -68,12 +67,16 @@
                 <form id="frm">
                     <div class="form-row">
                         <div class="col-8">
-                            <label>ID del Carro</label>
-                            <select id="car_id" name="car_id" class="form-control" style="width: 100%;"><option value=""></option></select>
+                            <label>Seleccione un Carro</label>
+                            <select id="car_id" name="car_id" class="form-control" style="width: 100%;">
+                                <option value=""></option>
+                            </select>
                         </div>
                         <div class="col-8">
-                            <label>ID del Producto</label>
-                            <select id="product_id" name="product_id" class="form-control" style="width: 100%;"><option value=""></option></select>
+                            <label>Seleccione un Producto</label>
+                            <select id="product_id" name="product_id" class="form-control" style="width: 100%;">
+                                <option value=""></option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
@@ -98,7 +101,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar Marca</h5>
+                    <h5 class="modal-title">Editar Compatibilidad</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -106,20 +109,28 @@
                 <form id="Efrm">
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-12">
                                 <div class="form-group">
-                                    <div class="col-8">
-                                        <label>ID del Carro</label>
-                                        <select id="Ecar_id" name="Ecar_id" class="form-control">
-                                        </select>
-                                    </div>
-                                    <div class="col-8">
-                                        <label>ID del Producto</label>
-                                        <select id="Eproduct_id" name="Eproduct_id" class="form-control">
-                                        </select>
+                                        <div class="col-6">
+                                            <label>Seleccione un Carro</label>
+                                            <select id="Ecar_id" name="Ecar_id" class="form-control"
+                                                style="width: 100%;">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <label>Seleccione un Producto</label>
+                                            <select id="Eproduct_id" name="Eproduct_id" class="form-control"
+                                                style="width: 100%;">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div>
+                            <div class="row"></div>
                         </div>
                         <button type="submit" class="btn btn-primary">Actualizar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

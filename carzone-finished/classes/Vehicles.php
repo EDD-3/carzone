@@ -47,7 +47,7 @@ class Vehicles extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT * FROM vehicles");
+            $statement = $cnx->prepare("SELECT * FROM vehicles v JOIN car_brands cr ON v.car_brand_id = cr.id");
             $statement->execute();
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))

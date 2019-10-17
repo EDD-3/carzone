@@ -47,7 +47,7 @@ class Employee extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT * FROM employees");
+            $statement = $cnx->prepare("SELECT * FROM employees as emp JOIN employee_types as type ON emp.title_id = type.id JOIN stores as store ON emp.store_id = store.id");
             $statement->execute();
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))

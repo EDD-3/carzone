@@ -34,7 +34,7 @@ $(document).ready(function(){
 });
 
 function getDrop(){
-    $.post('../.../stores/module_stores/main.php',{method:'get'},function(e){
+    $.post('../stores/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -55,7 +55,7 @@ function getDrop(){
 }
 
 function getDrop1(){
-    $.post('../.../products/module_products/main.php',{method:'get'},function(e){
+    $.post('../products/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -76,7 +76,7 @@ function getDrop1(){
 }
 
 function getModalDrop(){
-    $.post('../.../stores/module_stores/main.php',{method:'get'},function(e){
+    $.post('../stores/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -97,7 +97,7 @@ function getModalDrop(){
 }
 
 function getModalDrop1(){
-    $.post('../.../products/module_products/main.php',{method:'get'},function(e){
+    $.post('../products/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){

@@ -45,7 +45,7 @@ function getDropCar(){
         });
 
         $('#car_id').select2({
-            placeholder: 'Seleccione una ID',
+            placeholder: 'Seleccione un modelo de carro',
             data:datosDrop,
             theme: "bootstrap4",
             width: 'element'
@@ -66,7 +66,7 @@ function getDropProd(){
         });
 
         $('#product_id').select2({
-            placeholder: 'Seleccione una ID',
+            placeholder: 'Seleccione un producto',
             data:datosDrop,
             theme: "bootstrap4",
             width: 'element'
@@ -86,8 +86,8 @@ function getDropECar(){
             datosDrop.push(obj);
         });
 
-        $('#Ear_id').select2({
-            placeholder: 'Seleccione una ID',
+        $('#Ecar_id').select2({
+            placeholder: 'Seleccione un modelo de carro',
             data:datosDrop,
             theme: "bootstrap4",
             width: 'element'
@@ -108,7 +108,7 @@ function getDropEProd(){
         });
 
         $('#Eproduct_id').select2({
-            placeholder: 'Seleccione una ID',
+            placeholder: 'Seleccione un producto',
             data:datosDrop,
             theme: "bootstrap4",
             width: 'element'
@@ -178,12 +178,12 @@ function updateData() {
 var data = [];
 
 var columns = [{
-    title: 'ID de Carro',
-    data: 'car_id'
+    title: 'Modelo del Carro',
+    data: 'model'
 },
 {
-    title: 'ID de Producto',
-    data: 'product_id'
+    title: 'Nombre del Producto',
+    data: 'name'
 },
 {
     title: 'Acciones',

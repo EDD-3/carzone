@@ -47,7 +47,7 @@ class Products extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT * FROM products");
+            $statement = $cnx->prepare("SELECT p.id,p.name,pt.type,pb.name as brand FROM products p JOIN product_types pt ON pt.id = p.type_id JOIN product_brands pb ON pb.id = p.brand_id" );
             $statement->execute();
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))

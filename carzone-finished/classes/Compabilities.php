@@ -46,7 +46,7 @@ class Compabilities extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT * FROM compabilities");
+            $statement = $cnx->prepare("SELECT * FROM compabilities c JOIN vehicles v ON c.car_id = v.id JOIN products p ON c.product_id = p.id");
             $statement->execute();
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))

@@ -21,6 +21,7 @@ var na = document.getElementById('name');
 $(document).ready(function(){
     
     getDrop();
+    getDropM();
     getData();
     setupValidation()
 
@@ -31,7 +32,7 @@ $(document).ready(function(){
 });
 
 function getDrop(){
-    $.post('../.../vehicles/module_vehicles/main.php',{method:'get'},function(e){
+    $.post('../carbrands/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -42,8 +43,29 @@ function getDrop(){
             datosDrop.push(obj);
         });
 
-        $('#model').select2({
-            placeholder: 'Seleccione un maestro',
+        $('#car_brand_id').select2({
+            placeholder: 'Seleccione una marca',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
+
+function getDropM(){
+    $.post('../carbrands/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.name
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#Ecar_brand_id').select2({
+            placeholder: 'Seleccione una marca',
             data:datosDrop,
             theme: "bootstrap4",
             width: 'element'
@@ -119,7 +141,19 @@ function updateData() {
 var data = [];
 
 var columns = [{
-    title: 'Nombre de la marca del producto',
+    title: 'Modelo del carro',
+    data: 'model'
+},
+{
+    title: 'Motor',
+    data: 'engine'
+},
+{
+    title: 'Año',
+    data: 'year'
+},
+{
+    title:'Marca del carro',
     data: 'name'
 },
 {
@@ -148,10 +182,23 @@ function setDataTable(data){
     });
 }
 
+//Validar el formulario principal
 function setupValidation(){
     $('#frm').validate({
         rules:{
-            name:{
+            model:{
+                required:true
+            },
+            engine: {
+                required:true
+            },
+            year:{
+                required:true
+            },
+            brand_id:{
+                required:true
+            },
+            car_brand_id:{
                 required:true
             }
         },
@@ -170,13 +217,26 @@ function setupValidation(){
     });
 }
 
+
+//Validar el formulario del modal
 function setupModalValidation(){
     $('#Efrm').validate({
         rules:{
-            Ename:{
+            Emodel:{
+                required:true
+            },
+            Eengine: {
+                required:true
+            },
+            Eyear:{
+                required:true
+            },
+            Ebrand_id:{
+                required:true
+            },
+            Ecar_brand_id:{
                 required:true
             }
-
         },
         submitHandler: function(form){
             updateData();

@@ -47,7 +47,7 @@ class Product_brand extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT * FROM product_bands");
+            $statement = $cnx->prepare("SELECT * FROM product_brands");
             $statement->execute();
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))

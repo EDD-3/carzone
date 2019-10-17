@@ -20,7 +20,10 @@ $.extend($.validator.messages,{
 var na = document.getElementById('name');
 $(document).ready(function(){
     
-    getDrop();
+    getDropT();
+    getDropB();
+    getDropTM();
+    getDropBM();
     getData();
     setupValidation()
 
@@ -30,8 +33,29 @@ $(document).ready(function(){
       });
 });
 
-function getDrop(){
-    $.post('../.../products/module_products/main.php',{method:'get'},function(e){
+function getDropT(){
+    $.post('../product_types/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.type
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#type_id').select2({
+            placeholder: 'Seleccione un Tipo',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
+
+function getDropB(){
+    $.post('../productbrands/main.php',{method:'get'},function(e){
         var datosDrop = [];
         values = e;
         $.each(e,function(index,value){
@@ -42,8 +66,50 @@ function getDrop(){
             datosDrop.push(obj);
         });
 
-        $('#name').select2({
-            placeholder: 'Seleccione un maestro',
+        $('#brand_id').select2({
+            placeholder: 'Seleccione una Marca',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
+
+function getDropTM(){
+    $.post('../product_types/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.type
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#Etype_id').select2({
+            placeholder: 'Seleccione un Tipo',
+            data:datosDrop,
+            theme: "bootstrap4",
+            width: 'element'
+        });
+    });
+}
+
+function getDropBM(){
+    $.post('../productbrands/main.php',{method:'get'},function(e){
+        var datosDrop = [];
+        values = e;
+        $.each(e,function(index,value){
+            var obj = {
+                id:value.id,
+                text:value.name
+            };
+            datosDrop.push(obj);
+        });
+
+        $('#Ebrand_id').select2({
+            placeholder: 'Seleccione una Marca',
             data:datosDrop,
             theme: "bootstrap4",
             width: 'element'
@@ -53,6 +119,7 @@ function getDrop(){
 
 function getData() {
     $.post('main.php',{method:'get'},function(data){
+        console.log(data)
         setDataTable(data);
     });
 }
@@ -80,7 +147,9 @@ function deleteData(id){
 
 function editRow(id){
     editId = id;
+    console.log(id)
     $.post('main.php',{method:'show',data:{id:id}},function(e){
+        console.log(e)
         $('#Ename').val(e[0].name),
         $('#Ebrand_id').val(e[0].name),
         $('#Etype_id').val(e[0].name);
@@ -116,8 +185,16 @@ function updateData() {
 var data = [];
 
 var columns = [{
-    title: 'Nombre de la marca del producto',
+    title: 'Nombre del Producto',
     data: 'name'
+},
+{
+    title: 'Nombre de la Marca',
+    data: 'brand'
+},
+{
+    title: 'Tipo del Producto',
+    data: 'type'
 },
 {
     title: 'Acciones',

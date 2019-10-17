@@ -234,11 +234,11 @@ var columns = [{
 },
 {
     title: 'Puesto',
-    data: 'title_id'
+    data: 'title'
 },
 {
     title: 'Tienda',
-    data: 'store_id'
+    data: 'name'
 },
 {
     title: 'Acciones',

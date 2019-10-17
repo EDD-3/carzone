@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Marcas de autos</title>
+    <title>Productos</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="">
@@ -64,20 +64,24 @@
                 <form id="frm">
                     <div class="form-row">
                         <div class="col-8">
-                            <label>productos</label>
+                            <label>Productos</label>
                             <input type="text" id="name" name="name" class="form-control">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-8">
-                            <label>partes productos</label>
-                            <input type="text" id="brand_id" name="brand_id" class="form-control">
+                            <label>Marca de Productos</label>
+                            <select name="brand_id" id="brand_id" class="form-control">
+                                <option value=""></option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-8">
                             <label>Tipo de productos</label>
-                            <input type="text" id="type_id" name="type_id" class="form-control">
+                            <select  id="type_id" name="type_id" class="form-control">
+                                <option value=""></option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
@@ -110,14 +114,28 @@
                 </div>
                 <form id="Efrm">
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label>Nombre de la marca</label>
-                                    <input type="text" class="form-control" name="Ename" id="Ename">
+                            <div class="form-row">
+                                    <div class="col-8">
+                                        <label>Productos</label>
+                                        <input type="text" id="Ename" name="Ename" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="form-row">
+                                    <div class="col-8">
+                                        <label>Marca de Productos</label>
+                                        <select name="Ebrand_id" id="Ebrand_id" class="form-control">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-8">
+                                        <label>Tipo de productos</label>
+                                        <select  id="Etype_id" name="Etype_id" class="form-control">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
                         <button type="submit" class="btn btn-primary">Actualizar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </div>
